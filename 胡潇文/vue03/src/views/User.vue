@@ -61,38 +61,43 @@ export default {
   },
   methods: {
     getAllUsers(){
-      axios.get("http://localhost:8081/AllUsers")
-          .then(resp => {
-            console.log(resp);
-            this.users = resp.data;
-          })
+      this.getRequest("/AllUsers").then(resp => {
+        console.log(resp);
+        this.users = resp.data;
+      })
     },
     getUserById(){
-      axios.get(`http://localhost:8081/user/${this.queryId}`)
-          .then(resp => {
-            console.log(resp);
-            this.userById = resp.data;
-          })
+      this.getRequest(`/user/${this.queryId}`).then(resp => {
+        console.log(resp);
+        this.userById = resp.data;
+      })
     },
     addUser(){
-      axios.post("http://localhost:8081/user",
-          {
-            username: this.username,
-            address: this.address
-          }).then(resp => {
-        console.log(resp);
+      this.postRequest("/user", {
+        username: this.username,
+        address: this.address
+      }).then(resp => {
+        console.log(resp)
       })
     },
     updateUser(){
-      axios.put("http://localhost:8081/user",{
+      this.putRequest("/user", {
         id: this.id,
         username: this.username,
         address: this.address
-      }).then( resp => {
+      }).then(resp => {
+        console.log(resp);
+      })
+    },
+    deleteUser(){
+      this.deleteRequest("/user", {
+        id: this.deleteId
+      }).then(resp => {
         console.log(resp);
       })
     }
   }
+
 }
 </script>
 <style scoped>

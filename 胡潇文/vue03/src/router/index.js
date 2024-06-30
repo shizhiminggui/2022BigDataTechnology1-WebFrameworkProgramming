@@ -5,17 +5,10 @@ import NotFound from "@/views/NotFound.vue";
 Vue.use(VueRouter);
 const routes = [
     {
-        path: "/",
-        redirect:"/user"
-    },
-    {
-        path: "/user",
-        component: User
-    },
-    {
-        path: "*",
-        component: NotFound
+        path: "/myUser",
+        component: MyUser
     }
+    ...
 ]
 const router = new VueRouter({
     routes: routes
